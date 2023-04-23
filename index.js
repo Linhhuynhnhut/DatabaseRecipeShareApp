@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const userRoute = require("./routes/userRoute");
 const postRoute = require("./routes/postRoute");
+const tagRoute = require("./routes/tagRoute");
 
 mongoose.set("strictQuery", false);
 dotenv.config();
@@ -27,6 +28,7 @@ app.use(morgan("common"));
 
 app.use("/api/user", userRoute);
 app.use("/api/post", postRoute);
+app.use("/api/tag", tagRoute);
 
 app.listen(8000, () => {
   console.log("Server is running....");

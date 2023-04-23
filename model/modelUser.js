@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema({
   phoneNumber: {
     type: String,
   },
+  password: {
+    type: String,
+    required: true,
+  },
 });
 
 let User = mongoose.model("User", userSchema);

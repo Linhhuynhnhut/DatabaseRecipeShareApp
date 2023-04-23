@@ -3,6 +3,7 @@ const tagSchema = new mongoose.Schema({
   nameTag: {
     type: String,
     required: true,
+    unique: true,
   },
 });
 

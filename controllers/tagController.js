@@ -1,4 +1,4 @@
-const { Tag } = require("../model/model");
+const { Tag } = require("../model/modelTag");
 const tagController = {
   addTag: async (req, res) => {
     try {
@@ -14,6 +14,15 @@ const tagController = {
     try {
       const tags = await Tag.find();
       res.status(200).json(tags);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+
+  getTag: async (req, res) => {
+    try {
+      const tag = await Tag.findById(req.params.id);
+      res.status(200).json(tag);
     } catch (error) {
       res.status(500).json(error);
     }
