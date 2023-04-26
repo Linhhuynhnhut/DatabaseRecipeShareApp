@@ -9,6 +9,7 @@ const userRoute = require("./routes/userRoute");
 const postRoute = require("./routes/postRoute");
 const tagRoute = require("./routes/tagRoute");
 
+app.use(cors());
 mongoose.set("strictQuery", false);
 dotenv.config();
 
@@ -23,13 +24,14 @@ mongoose
   });
 
 app.use(bodyParser.json({ limit: "50mb" }));
-app.use(cors());
 app.use(morgan("common"));
 
 app.use("/api/user", userRoute);
 app.use("/api/post", postRoute);
 app.use("/api/tag", tagRoute);
 
-app.listen(8000, () => {
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => {
   console.log("Server is running....");
 });
