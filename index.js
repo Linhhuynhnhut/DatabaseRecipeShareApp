@@ -8,30 +8,65 @@ const dotenv = require("dotenv");
 const userRoute = require("./routes/userRoute");
 const postRoute = require("./routes/postRoute");
 const tagRoute = require("./routes/tagRoute");
+const http = require("http");
 
-app.use(cors());
-mongoose.set("strictQuery", false);
+// app.use(cors());
+// mongoose.set("strictQuery", false);
 dotenv.config();
 
-mongoose
-  .connect(process.env.MONGODB_URL)
-  .then(() => {
-    console.log("Mongodb connected");
-  })
-  .catch((err) => {
-    console.log({ err });
-    process.exit(1);
-  });
+// mongoose
+//   .connect(process.env.MONGODB_URL)
+//   .then(() => {
+//     console.log("Mongodb connected");
+//   })
+//   .catch((err) => {
+//     console.log({ err });
+//     process.exit(1);
+//   });
 
-app.use(bodyParser.json({ limit: "50mb" }));
-app.use(morgan("common"));
+// app.use(bodyParser.json({ limit: "50mb" }));
+// app.use(morgan("common"));
+
+// app.use("/api/user", userRoute);
+// app.use("/api/post", postRoute);
+// app.use("/api/tag", tagRoute);
+
+// const port = process.env.PORT || 8000;
+
+// app.listen(port, () => {
+//   console.log("Server is running....");
+// });
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+// app.use(cookieParser());
 
 app.use("/api/user", userRoute);
 app.use("/api/post", postRoute);
 app.use("/api/tag", tagRoute);
 
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500);
+  res.send("error", {
+    message: err.message,
+    error: err,
+  });
+});
+
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => {
-  console.log("Server is running....");
-});
+const server = http.createServer(app);
+
+mongoose
+  .connect(process.env.MONGODB_URL)
+  .then(() => {
+    console.log("Mongodb connected");
+    server.listen(port, () => {
+      console.log(`Server is listening on port ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.log({ err });
+    process.exit(1);
+  });
