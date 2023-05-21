@@ -1,4 +1,6 @@
 const { Post } = require("../model/modelPost");
+const { Comment } = require("../model/modelComment");
+const { Reaction } = require("../model/modelReaction");
 const postController = {
   addPost: async (req, res) => {
     try {
@@ -30,15 +32,16 @@ const postController = {
 
   deletePost: async (req, res) => {
     try {
+      await Comment.deleteMany({ post: req.params.id });
+      await Reaction.deleteMany({ post: req.params.id });
       await Post.findByIdAndDelete(req.params.id);
-      // xóa những gì liên quan đến post ở các model khác
       res.status(200);
     } catch (error) {
       res.status(500).json(error);
     }
   },
 
-  deletePost: async (req, res) => {
+  updatePost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
       await post.updateOne({ $set: req.body });

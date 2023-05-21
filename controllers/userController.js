@@ -32,7 +32,6 @@ const userController = {
   deleteUser: async (req, res) => {
     try {
       await User.findByIdAndDelete(req.params.id);
-      // xóa những gì liên quan đến user ở các model khác
       res.status(200);
     } catch (error) {
       res.status(500).json(error);

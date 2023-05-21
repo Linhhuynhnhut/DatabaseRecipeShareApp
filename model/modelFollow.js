@@ -4,12 +4,14 @@ const followingSchema = new mongoose.Schema({
   follower: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+    required: true,
   },
 
   // Người được follow
   followee: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+    required: true,
   },
 });
 

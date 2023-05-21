@@ -8,6 +8,9 @@ const dotenv = require("dotenv");
 const userRoute = require("./routes/userRoute");
 const postRoute = require("./routes/postRoute");
 const tagRoute = require("./routes/tagRoute");
+const commentRoute = require("./routes/commentRoute");
+const followRoute = require("./routes/followRoute");
+const reactionRoute = require("./routes/reactionRoute");
 const http = require("http");
 
 // app.use(cors());
@@ -44,6 +47,9 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/user", userRoute);
 app.use("/api/post", postRoute);
+app.use("/api/comment", commentRoute);
+app.use("/api/follow", followRoute);
+app.use("/api/reaction", reactionRoute);
 app.use("/api/tag", tagRoute);
 
 app.use(function (err, req, res, next) {

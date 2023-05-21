@@ -27,6 +27,25 @@ const tagController = {
       res.status(500).json(error);
     }
   },
+
+  // deleteTag: async (req, res) => {
+  //   try {
+  //     await Tag.findByIdAndDelete(req.params.id);
+  //     res.status(200);
+  //   } catch (error) {
+  //     res.status(500).json(error);
+  //   }
+  // },
+
+  // updateTag: async (req, res) => {
+  //   try {
+  //     const tag = await Tag.findById(req.params.id);
+  //     await tag.updateOne({ $set: req.body });
+  //     res.status(200);
+  //   } catch (error) {
+  //     res.status(500).json(error);
+  //   }
+  // },
 };
 
 module.exports = tagController;
