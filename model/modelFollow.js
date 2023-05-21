@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const followingSchema = new mongoose.Schema({
+const followSchema = new mongoose.Schema({
   // Người follow
   follower: {
     type: mongoose.Schema.Types.ObjectId,
@@ -15,5 +15,5 @@ const followingSchema = new mongoose.Schema({
   },
 });
 
-let Following = mongoose.model("Following", followingSchema);
-module.exports = { Following };
+let Follow = mongoose.model("Follow", followSchema);
+module.exports = { Follow };
