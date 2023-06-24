@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const reactionController = require("../controllers/reactionController");
 
-router.post("/", reactionController.addComment);
+router.post("/", reactionController.addReaction);
 
 router.get("/", reactionController.getAllReactions);
 
