@@ -1,6 +1,6 @@
 const { Reaction } = require("../model/modelReaction");
 const reactionController = {
-  addComment: async (req, res) => {
+  addReaction: async (req, res) => {
     try {
       const newReaction = new Reaction(req.body);
       const saveReaction = await newReaction.save();
