@@ -18,15 +18,18 @@ const postSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  video: {
-    type: String,
-  },
   date: {
     type: String,
     required: true,
   },
   reactionCount: {
     type: Number,
+  },
+  timeToComplete: {
+    type: String,
+  },
+  portion: {
+    type: String,
   },
   tags: [
     {
